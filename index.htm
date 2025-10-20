@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌 My Love</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffdee9, #b5fffc);
+    overflow-x: hidden;
+    color: #333;
+    text-align: center;
+    min-height: 100vh;
+}
+
+header {
+    padding: 60px 20px 20px;
+    font-size: 2.8em;
+    color: #ff5c8a;
+    text-shadow: 0 0 15px rgba(255, 92, 138, 0.4);
+}
+
+h2 {
+    color: #ff5c8a;
+    margin-top: 20px;
+}
+
+p {
+    max-width: 700px;
+    margin: 0 auto 15px;
+    line-height: 1.6;
+}
+
+/* Floating hearts animation */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    color: #ff7f9f;
+    animation: float 8s infinite ease-in;
+    opacity: 0.6;
+}
+@keyframes float {
+    0% {transform: translateY(0) scale(1);}
+    100% {transform: translateY(-100vh) scale(0);}
+}
+
+/* Music control */
+.music {
+    margin: 40px 0;
+}
+
+.music select {
+    background-color: #ffe3ec;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1em;
+    color: #ff5c8a;
+    margin-bottom: 10px;
+    box-shadow: 0 0 8px rgba(255, 92, 138, 0.3);
+    cursor: pointer;
+}
+
+/* Hidden audio player */
+audio {
+    display: none;
+}
+
+/* Love Letter */
+.love-letter-btn {
+    background-color: #ff5c8a;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(255, 92, 138, 0.5);
+}
+.love-letter-btn:hover {
+    transform: scale(1.05);
+    background-color: #ff85a7;
+}
+
+/* Hidden letter */
+.love-letter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: white;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 600px;
+    padding: 30px;
+    box-shadow: 0 0 40px rgba(255, 92, 138, 0.4);
+    transition: all 0.5s ease;
+    opacity: 0;
+    z-index: 10;
+}
+
+.love-letter.open {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.love-letter img {
+    width: 45%;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #ff5c8a;
+    font-size: 1.5em;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 10px;
+    color: #ff5c8a;
+}
+</style>
+</head>
+<body>
+
+<header>Hi, my love 💖</header>
+
+<section>
+    <h2>What I See in You</h2>
+    <p>You’re the kind of person who makes everything softer and brighter. Being around you feels like finding a quiet melody in a noisy world.</p>
+    <p><em>You're inspiring, beautiful, and loved — always.</em></p>
+</section>
+
+<section class="music">
+    <h2>Our Songs</h2>
+    <select id="songSelect">
+        <option value="love.mp3">“love.” – wave to earth</option>
+        <option value="helium.mp3">“Helium” – ENHYPEN</option>
+    </select>
+</section>
+
+<audio id="player" autoplay loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="love-letter-btn" id="openLetter">💌 Open Secret Letter</button>
+
+<div class="love-letter" id="letter">
+    <button class="close-btn" id="closeLetter">&times;</button>
+    <h2>💖 My Secret Letter to You 💖</h2>
+    <p>
+        Hey love,<br><br>
+        I never really believed that ordinary days could turn into something so magical — until you showed up.
+        You make simple things feel beautiful, and every moment feel like home.<br><br>
+        If I could describe us, I’d say we’re a mix of <em>25 21</em> and <em>The Notebook</em> —
+        a story full of laughter, tears, and a kind of love that doesn’t fade when the screen goes dark.<br><br>
+        You don’t have to be perfect, love. You already are enough — just as you are.<br><br>
+        With all my heart,<br>
+        <strong>Yours, always.</strong>
+    </p>
+    <div>
+        <img src="25-21.jpg" alt="25 21 Poster">
+        <img src="the-notebook.jpg" alt="The Notebook Poster">
+    </div>
+</div>
+
+<footer>❤️ Created with love, for you.</footer>
+
+<script>
+    // Floating hearts
+    const hearts = ['💖','💘','💝','❤️','💕'];
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+        heart.style.left = Math.random()*100 + 'vw';
+        heart.style.fontSize = (20 + Math.random()*20) + 'px';
+        heart.style.animationDuration = (5 + Math.random()*5) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+    }, 600);
+
+    // Music switching
+    const player = document.getElementById('player');
+    const select = document.getElementById('songSelect');
+    select.addEventListener('change', () => {
+        player.src = select.value;
+        player.play();
+    });
+
+    // Love letter modal
+    const openBtn = document.getElementById('openLetter');
+    const closeBtn = document.getElementById('closeLetter');
+    const letter = document.getElementById('letter');
+
+    openBtn.addEventListener('click', () => letter.classList.add('open'));
+    closeBtn.addEventListener('click', () => letter.classList.remove('open'));
+</script>
+
+</body>
+</html>
