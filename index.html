@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Bem 💞</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #ffd6d6, #fff0f5);
+      overflow-x: hidden;
+      color: #333;
+      text-align: center;
+      transition: background 1s ease;
+    }
+
+    header {
+      padding: 40px 0 20px;
+      font-size: 2.5em;
+      color: #ff5c8a;
+      animation: fadeIn 2s ease-in;
+    }
+
+    h2 {
+      color: #ff5c8a;
+      margin-top: 30px;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    footer {
+      background: #ff5c8a;
+      color: white;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+
+    /* Botões */
+    button {
+      background: #ff5c8a;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      margin: 10px;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    button:hover {
+      background: #ff3c6f;
+    }
+
+    /* Carta Secreta */
+    .letter {
+      display: none;
+      background: white;
+      padding: 30px;
+      margin-top: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(255, 92, 138, 0.4);
+      animation: openLetter 1s ease forwards;
+    }
+
+    @keyframes openLetter {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Corações flutuando */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: #ff5c8a;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Oi, meu bem 💖</header>
+
+  <section>
+    <h2>O que eu vejo em você</h2>
+    <p>
+      Você é a pessoa mais incrível que eu já conheci, com um coração tão
+      grande quanto sua alma. Cada momento ao seu lado é um presente.
+    </p>
+    <p><i>You're inspiring, beautiful, and loved. Never forget that.</i></p>
+  </section>
+
+  <section>
+    <h2>Nossa trilha sonora</h2>
+    <p>Escolha a música que vai embalar este momento:</p>
+    <button onclick="playMusic('wave to earth - love. (Official Lyric Video)(MP3_160K).mp3')">
+      🎧 “love.” – wave to earth
+    </button>
+    <button onclick="playMusic('ENHYPEN - Helium _ Live from Vevo Studios(MP3_160K).mp3')">
+      💫 “Helium” – ENHYPEN
+    </button>
+
+    <audio id="musicPlayer" autoplay loop></audio>
+  </section>
+
+  <section>
+    <h2>💌 Cartinha Secreta</h2>
+    <button onclick="openLetter()">Abrir 💌</button>
+    <div id="secretLetter" class="letter">
+      <p><strong>My love,</strong></p>
+      <p>
+        You have become my favorite part of every day. I don’t know when it
+        happened — maybe in a glance, maybe in a laugh — but you’ve quietly
+        taken a piece of my heart and made it feel safe there.
+      </p>
+      <p>
+        I love the way you see the world, the way your smile softens everything
+        around you. You make ordinary moments feel like poetry.
+      </p>
+      <p>
+        Wherever life takes us, know that you are my calm, my warmth, my
+        everything I didn’t know I was looking for.
+      </p>
+      <p><i>Forever yours, in every little heartbeat. 💕</i></p>
+    </div>
+  </section>
+
+  <footer>❤️ Criado por mim, para você.</footer>
+
+  <script>
+    const player = document.getElementById("musicPlayer");
+
+    function playMusic(file) {
+      player.src = file;
+      player.play();
+    }
+
+    function openLetter() {
+      document.getElementById("secretLetter").style.display = "block";
+    }
+
+    // Criar corações flutuando
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
+  </script>
+</body>
+</html>
